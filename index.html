@@ -59,27 +59,43 @@
          <img src="course-6.svg" alt="">
       </div>
 <div>
+   
 	   <h1 class="heading"><span>Pernytaan</span>  Mengikuti<br><span>Ekstra</span> IT</h1>
-      <form action="" method="post">
+      <form action="" method="post" name="Ekstra-IT">
+         <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+            <strong>Terimakasih!</strong> Pesan Anda telah diterima.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
          <span>nama lengkap</span>
-         <input type="text" required placeholder="enter your full name" maxlength="50" name="name" class="box">
+         <input type="text" required placeholder="enter your full name" maxlength="50" name="nama" class="box">
          <span>Nomor</span>
-         <input type="text" required placeholder="masukkan nomor hp anda" maxlength="50" name="number" class="box">
+         <input type="text" required placeholder="masukkan nomor hp anda" maxlength="50" name="nomor" class="box">
+         <span>Divisi</span>
+         <br>
+         <select class="btn" name="Divisi">
+            <option>Web Development</option>
+            <option>Content Creator </option>
+         </select>
          <div class="radio">
-            <input type="radio" name="Pernytaan" value="mengikuti" id="mengikuti">
-            <label for="mengikuti">Bersedia mengikuti</label>
+            <span>Pernyataan</span>
             <br>
-            <input type="radio" name="Pernytaan" value="Tidak bersedia " id="Tidak bersedia ">
+            <br>
+            <input type="radio" name="Pernyataan" value="mengikuti" id="mengikuti">
+            <label for="mengikuti">Bersedia mengikuti</label>
+            <br class="py-3">
+            <input type="radio" name="Pernyataan" value="Tidak bersedia " id="Tidak bersedia ">
             <label for="Tidak">Tidak bersedia mengikuti</label>
          </div>
-         <select class="btn">
-            <option>Web Development</option>
-            <option>Design</option>
-            <option>Content Creator</option>
-            <option>Editing</option>
-         </select>
          <br>
-         <input type="submit" value="send message" class="btn" name="send">
+        
+         <br>
+         <br>
+         <button type="submit" value="send" class="btn-kirim" name="send" >kirim</button>
+
+         <button class="btn btn--light-bg d-none btn-loading" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading...
+          </button>
       </form>
 
    </div>
@@ -102,7 +118,7 @@
          <a href="#" class="fab fa-youtube"></a>
       </div>
 
-      <div class="credit">&copy; copyright @ 2023 by <span>Mr. Repal</span> | all rights reserved!</div>
+      <div class="credit">&copy; copyright @ 2023 by <span>Child</span> | all rights reserved!</div>
 
    </section>
 
@@ -117,6 +133,34 @@ Option 1: Bootstrap Bundle with Popper -->
 
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
+
+<script>
+   const scriptURL = 'https://script.google.com/macros/s/AKfycbzxJ7xKQ2W1n0newDmXcKrIeD62eB4qf6p48rMg2XeCo5u-CY1g_FSxzAX1rRwWAN_4Ww/exec'
+   const form = document.forms['Ekstra-IT']
+   const btnKirim = document.querySelector('.btn-kirim');
+   const btnLoading = document.querySelector('.btn-loading');
+   const myAlert = document.querySelector ('.my-alert');
+ 
+   form.addEventListener('submit', e => {
+     e.preventDefault()
+     // ketika tombol submit diklik
+     // tampilkan tombol loading, hilangkan tombol kirim
+     btnLoading.classList.toggle('d-none');
+     btnKirim.classList.toggle('d-none');
+     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+       .then(response => {
+         // tampilkan tombol loading, hilangkan tombol kirim
+         btnLoading.classList.toggle('d-none');
+         btnKirim.classList.toggle('d-none');
+         // tampilkan alert
+         myAlert.classList.toggle('d-none');
+         // reset form
+         form.reset();
+         console.log('Success!', response)
+      })
+       .catch(error => console.error('Error!', error.message))
+   })
+ </script>
 
 </body>
 </html>
