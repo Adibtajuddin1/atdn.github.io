@@ -72,6 +72,16 @@ section {
   color: var(--black);
 }
 
+.btn-kirim {
+  display: inline-block;
+  margin-top: 1rem;
+  border-radius: 5rem;
+  background-color: var(--light-bg);
+  color: var(--white);
+  font-size: 1.8rem;
+  padding: 1rem 3rem;
+}
+
 .heading {
   margin-bottom: 2.5rem;
   text-align: center;
